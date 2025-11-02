@@ -1,0 +1,13 @@
+# Ignore node_modules everywhere (both api/ and client/)
+**/node_modules
+
+# Ignore environment files
+**/.env
+
+# Ignore build outputs
+**/dist
+**/build
+
+# Optional: macOS and VSCode junk files
+.DS_Store
+.vscode/
