@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
 import api from '../api';
 import { toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import Oauth from '../Components/Oauth';
 
 const Signin = () => {
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -28,6 +29,7 @@ const Signin = () => {
       console.log(res, "res");
       toast.success(res.data);
       dispatch(signInSuccess(res.data))
+      navigate("/")
 
     }
     catch (error) {

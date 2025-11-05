@@ -34,6 +34,16 @@ const updateUser = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res, next) => {
+  try {
+    await User.findByIdAndDelete(req.user.id);
+    res.clearCookie("access_token");
+    res.status(200).json("User has been deleted!");
+  } catch (error) {
+    next(error);
+  }
+};
+
 const _uploadToCloudinary = (fileBuffer, folderName = "profile") => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader
@@ -47,4 +57,5 @@ const _uploadToCloudinary = (fileBuffer, folderName = "profile") => {
 
 module.exports = {
   updateUser,
+  deleteUser
 };
