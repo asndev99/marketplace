@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRouter = require("./Routes/auth.Routes");
+const cookieParser = require("cookie-parser");
+const userRouter = require("./Routes/user.Routes");
 require("dotenv").config();
 
 const app = express();
@@ -11,7 +13,9 @@ const startServer = async () => {
         console.log("✅ Database connected");
 
         app.use(express.json())
+        app.use(cookieParser());
         app.use("/api/auth", authRouter);
+        app.use("/api/user",userRouter);
 
         app.listen(3000, () => {
             console.log("🚀 Server is listening on PORT 3000");
